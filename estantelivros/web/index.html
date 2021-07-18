@@ -27,9 +27,41 @@
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <!-- This script installs service_worker.js to provide PWA functionality to
-       application. For more information, see:
-       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/8.6.1/firebase-app.js"></script>
+
+  <!-- Add for Firebase Storage: https://pub.dev/packages/firebase_storage -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-storage.js"></script>
+
+  <!-- Add for Cloud Firestore: https://pub.dev/packages/cloud_firestore -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+
+  <!-- Add for Firebase Auth: https://pub.dev/packages/firebase_auth -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-auth.js"></script>
+
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js"></script>
+  <!-- Add for Firebase Messaging: https://pub.dev/packages/firebase_messaging
+  <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-messaging.js"></script> -->
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyAjZ_p7qFxG7Ksf-Pg9SBn7s3MLpwoDKjs",
+      authDomain: "estante-de-livros.firebaseapp.com",
+      projectId: "estante-de-livros",
+      storageBucket: "estante-de-livros.appspot.com",
+      messagingSenderId: "813753348201",
+      appId: "1:813753348201:web:f2a974eb722ab4046472f8",
+      measurementId: "G-5J0D5XMBWM"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
+    <!-- This script installs service_worker.js to provide PWA functionality to
+     application. For more information, see:
+     https://developers.google.com/web/fundamentals/primers/service-workers -->
   <script>
     var serviceWorkerVersion = null;
     var scriptLoaded = false;
