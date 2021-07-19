@@ -1,3 +1,4 @@
+import 'package:estantelivros/controllers/livros_controller.dart';
 import 'package:estantelivros/controllers/menu_open_controller.dart';
 import 'package:estantelivros/screens/login/login_screen.dart';
 import 'package:estantelivros/store/user_manager_store.dart';
@@ -27,6 +28,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProxyProvider0<LivrosController>(
+          create: (_) => LivrosController(),
+          lazy: true,
+          update: (_, livrosController) =>
+          livrosController..update(),
+        ),
         ChangeNotifierProvider(
             create: (_) => MenuOpenController()
         )
