@@ -85,7 +85,7 @@ class _NewLivroScreenState extends State<NewLivroScreen> {
                     return TextFormField(
                       initialValue: store.titulo ?? '',
                       onChanged: store.setTitulo,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.black),
                       decoration: InputDecoration(
                           errorText: store.tituloError,
                           contentPadding: EdgeInsets.fromLTRB(16, 16, 32, 16),
@@ -120,7 +120,7 @@ class _NewLivroScreenState extends State<NewLivroScreen> {
                       expands: false,
                       maxLines: 3,
                       maxLength: 300,
-                      style: TextStyle(fontSize: 16),
+                      style: TextStyle(fontSize: 16, color: Colors.black),
                       decoration: InputDecoration(
                           errorText: store.descricaoError,
                           contentPadding: EdgeInsets.fromLTRB(16, 16, 32, 16),

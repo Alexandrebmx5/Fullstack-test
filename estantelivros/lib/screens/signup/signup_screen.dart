@@ -1,6 +1,5 @@
 import 'package:estantelivros/screens/base/base_screen.dart';
-import 'package:estantelivros/screens/signup/signup_screen.dart';
-import 'package:estantelivros/store/login_store.dart';
+import 'package:estantelivros/store/signup_store.dart';
 import 'package:estantelivros/store/user_manager_store.dart';
 import 'package:estantelivros/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -8,14 +7,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 import 'package:mobx/mobx.dart';
 
-class LoginScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  _SignupScreenState createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
 
-  final LoginStore loginStore = LoginStore();
+  final SignupStore signupStore = SignupStore();
 
   final UserManagerStore userManagerStore = GetIt.I<UserManagerStore>();
 
@@ -35,35 +34,35 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/images/livros.png'),
-          fit: BoxFit.cover
-        )
+          image: DecorationImage(
+              image: AssetImage('assets/images/livros.png'),
+              fit: BoxFit.cover
+          )
       ),
       child: SafeArea(
           child: Observer(builder: (_){
-            if (loginStore.loading)
-            return Center(
-              child: Card(
-                color: white,
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Text('Carregando...', style: TextStyle(color: bgColor, fontSize: 16),),
-                      ),
-                      CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation(secondaryColor),
-                      ),
-                    ],
+            if (signupStore.loading)
+              return Center(
+                child: Card(
+                  color: white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 10),
+                          child: Text('Carregando...', style: TextStyle(color: bgColor, fontSize: 16),),
+                        ),
+                        CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(secondaryColor),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
-            );
+              );
             else
               return Center(
                   child: Card(
@@ -82,9 +81,38 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: const EdgeInsets.only(top: 20, bottom: 10),
                             child: Container(
                               height: 50,
-                              child: Text('Faça login', style: TextStyle(color: bgColor, fontSize: 22),),
+                              child: Text('Cadastro', style: TextStyle(color: bgColor, fontSize: 22),),
                             ),
                           ),
+                          Observer(builder: (_){
+                            return Padding(
+                                padding: EdgeInsets.fromLTRB(20, 10, 20, 0),
+                                child: Container(
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor.withAlpha(50),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      onChanged: signupStore.setName,
+                                      autocorrect: false,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                      decoration: InputDecoration(
+                                          errorText: signupStore.nameError,
+                                          border: InputBorder.none,
+                                          icon: Icon(
+                                            Icons.email,
+                                            color: bgColor,
+                                          ),
+                                          hintText: 'Nome',
+                                          hintStyle: TextStyle(color: bgColor)),
+                                    ),
+                                  ),
+                                ));
+                          }),
                           Observer(builder: (_){
                             return Padding(
                                 padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -96,14 +124,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextFormField(
-                                      onChanged: loginStore.setEmail,
+                                      onChanged: signupStore.setEmail,
                                       keyboardType: TextInputType.emailAddress,
                                       autocorrect: false,
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                       decoration: InputDecoration(
-                                          errorText: loginStore.emailError,
+                                          errorText: signupStore.emailError,
                                           border: InputBorder.none,
                                           icon: Icon(
                                             Icons.email,
@@ -117,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           }),
                           Observer(builder: (_){
                             return  Padding(
-                                padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                                padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
                                 child: Container(
                                   height: 60,
                                   decoration: BoxDecoration(
@@ -126,14 +154,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextFormField(
-                                      onChanged: loginStore.setPassword,
+                                      onChanged: signupStore.setPass1,
                                       autocorrect: false,
                                       obscureText: true,
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                       decoration: InputDecoration(
-                                          errorText: loginStore.passwordError,
+                                          errorText: signupStore.pass1Error,
                                           border: InputBorder.none,
                                           icon: Icon(
                                             Icons.lock,
@@ -146,25 +174,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ));
                           }),
                           Observer(builder: (_){
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                TextButton(
-                                  onPressed: loginStore.recoverPassword,
+                            return  Padding(
+                                padding: EdgeInsets.fromLTRB(20, 0, 20, 10),
+                                child: Container(
+                                  height: 60,
+                                  decoration: BoxDecoration(
+                                      color: Theme.of(context).primaryColor.withAlpha(50),
+                                      borderRadius: BorderRadius.circular(10)),
                                   child: Padding(
-                                    padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-                                    child: Text(
-                                      'Esqueceu sua senha?',
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      onChanged: signupStore.setPass2,
+                                      autocorrect: false,
+                                      obscureText: true,
                                       style: TextStyle(
-                                          color: Colors.grey,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                          fontFamily: 'Principal'),
+                                        color: Colors.black,
+                                      ),
+                                      decoration: InputDecoration(
+                                          errorText: signupStore.pass2Error,
+                                          border: InputBorder.none,
+                                          icon: Icon(
+                                            Icons.lock,
+                                            color: bgColor,
+                                          ),
+                                          hintStyle: TextStyle(color: bgColor),
+                                          hintText: 'Confirmar senha'),
                                     ),
                                   ),
-                                ),
-                              ],
-                            );
+                                ));
                           }),
                           Wrap(
                             children: [
@@ -182,10 +219,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                         BorderRadius.all(Radius.circular(10)),
                                       ),
                                       onPressed: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(builder: (_) => SignupScreen()));
+                                        Navigator.of(context).pop();
                                       },
-                                      child: const Text('CADASTRE-SE'),
+                                      child: const Text('Voltar'),
                                     ),
                                   ),
                                   Observer(builder: (_){
@@ -201,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           borderRadius:
                                           BorderRadius.all(Radius.circular(10)),
                                         ),
-                                        onPressed: loginStore.loginPressed,
+                                        onPressed: signupStore.signUpPressed,
                                         child: const Text('ENTRAR'),
                                       ),
                                     );
