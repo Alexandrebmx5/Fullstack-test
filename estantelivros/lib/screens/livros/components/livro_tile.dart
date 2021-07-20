@@ -59,9 +59,9 @@ class LivroTile extends StatelessWidget {
                     children: [
                       Text('Status: ', style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
                       if(livros.status == Status.noLido)
-                        Text(livros.statusText, style: TextStyle(color: Colors.red)),
+                        Text('Livro ainda não lido!', style: TextStyle(color: Colors.red)),
                       if(livros.status == Status.yesLido)
-                        Text(livros.statusText, style: TextStyle(color: Colors.green)),
+                        Text('Parabéns, você já leu esse livro!', style: TextStyle(color: Colors.green)),
                     ],
                   ),
                 ],

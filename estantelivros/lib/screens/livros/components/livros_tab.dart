@@ -1,4 +1,5 @@
 import 'package:estantelivros/screens/livros/components/header_livros.dart';
+import 'package:estantelivros/screens/livros/components/header_search.dart';
 import 'package:estantelivros/screens/livros/components/livros_list.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,10 @@ class LivrosTab extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: HeaderLivros(),
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+                child: SearchField()),
           ),
           SliverToBoxAdapter(
               child: Container(

@@ -31,9 +31,26 @@ class LivrosController extends ChangeNotifier {
 
   }
 
+  String _search = '';
+
+  String get search => _search;
+  void setSearch(String value){
+    _search = value;
+    notifyListeners();
+  }
+
   List<Livros> get filteredLivros {
-    List<Livros> output = _livros.reversed.toList();
-    return output;
+    final List<Livros> filteredLivros = [];
+
+    if(search.isEmpty){
+      filteredLivros.addAll(_livros);
+    } else {
+      filteredLivros.addAll(_livros.where((l) => l.titulo.toLowerCase().contains(search.toLowerCase())));
+    }
+
+
+
+    return filteredLivros.where((l) => statusFilter.contains(l.status)).toList();
   }
 
   void _listenToLivros(){
@@ -45,16 +62,13 @@ class LivrosController extends ChangeNotifier {
             for(final change in event.docChanges){
             switch (change.type) {
               case DocumentChangeType.added:
-                print('entrou add');
                 _livros.add(Livros.fromDocument(change.doc));
                 break;
               case DocumentChangeType.modified:
-                print('entrou modificado');
                 _livros.removeWhere((l) => l.id == change.doc.id);
                 _livros.add(Livros.fromDocument(change.doc));
                 break;
               case DocumentChangeType.removed:
-                print('entrou delete');
                 _livros.removeWhere((l) => l.id == change.doc.id);
                 break;
               }

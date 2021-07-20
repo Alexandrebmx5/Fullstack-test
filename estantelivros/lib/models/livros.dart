@@ -49,9 +49,9 @@ class Livros {
   static String getStatusText(Status status) {
     switch (status) {
       case Status.noLido:
-        return 'Livro ainda não lido!';
+        return 'Não lido';
       case Status.yesLido:
-        return 'Parabéns, você leu esse livro!';
+        return 'Lido';
       default:
         return '';
     }
