@@ -1,6 +1,5 @@
 import 'package:estantelivros/controllers/menu_controller.dart';
 import 'package:estantelivros/screens/livros/livros_screen.dart';
-import 'package:estantelivros/screens/main/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +14,6 @@ class BaseScreen extends StatelessWidget {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: <Widget>[
-          MainScreen(),
           LivrosScreen(),
         ],
       ),

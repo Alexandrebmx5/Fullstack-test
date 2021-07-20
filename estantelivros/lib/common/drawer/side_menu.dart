@@ -17,7 +17,7 @@ class SideMenu extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 100,
+              height: 80,
               child: DrawerHeader(
                 margin: EdgeInsets.only(bottom: 10),
                 child: Text('Estante de Livros',
@@ -25,14 +25,9 @@ class SideMenu extends StatelessWidget {
               ),
             ),
             DrawerListTile(
-              title: "Dashbord",
-              svgSrc: "assets/icons/menu_dashbord.svg",
-              page: 0,
-            ),
-            DrawerListTile(
               title: "Estante de Livros",
               svgSrc: "assets/icons/menu_doc.svg",
-              page: 1,
+              page: 0,
             ),
             SizedBox(
               height: 300,

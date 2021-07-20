@@ -18,13 +18,16 @@ class SearchField extends StatelessWidget {
           hintText: "Pesquisar",
           labelStyle: TextStyle(color: Colors.black),
           filled: true,
-          suffixIcon: IconButton(
-            onPressed: (){
-              showDialog(
-                  context: context,
-                  builder: (context) => FilterDialog());
-            },
-            icon: Icon(Icons.filter_alt_outlined),
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: IconButton(
+              onPressed: (){
+                showDialog(
+                    context: context,
+                    builder: (context) => FilterDialog());
+              },
+              icon: Icon(Icons.filter_alt_outlined),
+            ),
           ),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,

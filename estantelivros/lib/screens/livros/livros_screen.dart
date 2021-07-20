@@ -1,6 +1,5 @@
 import 'package:estantelivros/common/drawer/side_menu.dart';
 import 'package:estantelivros/controllers/menu_open_controller.dart';
-import 'package:estantelivros/screens/livros/components/livros_list.dart';
 import 'package:estantelivros/screens/livros/components/livros_tab.dart';
 import 'package:estantelivros/utils/responsive.dart';
 import 'package:flutter/material.dart';
