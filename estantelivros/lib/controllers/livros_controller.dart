@@ -25,7 +25,9 @@ class LivrosController extends ChangeNotifier {
     _livros.clear();
 
     _subscription?.cancel();
-    _listenToLivros();
+    if(userManagerStore != null){
+      _listenToLivros();
+    }
   }
 
   String _search = '';
