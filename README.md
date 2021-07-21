@@ -12,8 +12,7 @@
  - [Guia de estilo código em flutter](https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo)
 
 #### Diagrama de Entidade-Relacionamento
-
-
+![DER](estantelivros/docs/diagrama.png)
 
 #### Nota
 
@@ -47,3 +46,8 @@ docker run -i -p 8080:4040 -td estante_livros
 pronto!
 
 O aplicativo agora está sendo executado em localhost: 8080. Navegue até lá em um navegador para ver o aplicativo!
+
+### Acesso online Firebase Hosting
+
+[Link](https://estante-de-livros.web.app/)
+
