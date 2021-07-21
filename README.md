@@ -30,7 +30,7 @@ Certifique-se de instalar a atualização do kernel do Linux para Windows.
 
 faça o build do projeto, na pasta raiz do projeto execute o comando:
 ```
-flutter build web --web-renderer html --release
+flutter build web --web-renderer html
 ```
 
 com o docker instalado, execute o comando:
