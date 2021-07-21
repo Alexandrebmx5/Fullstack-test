@@ -1,4 +1,4 @@
-import 'package:estantelivros/screens/login/login_screen.dart';
+import 'package:estantelivros/main.dart';
 import 'package:estantelivros/store/user_manager_store.dart';
 import 'package:estantelivros/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,7 @@ class SideMenu extends StatelessWidget {
               onTap: () {
                 userManagerStore.logout();
                 Navigator.of(context)
-                    .push(MaterialPageRoute(builder: (_) => LoginScreen()));
+                    .push(MaterialPageRoute(builder: (_) => MyApp()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 18),

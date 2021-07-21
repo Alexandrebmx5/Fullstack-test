@@ -25,10 +25,7 @@ class LivrosController extends ChangeNotifier {
     _livros.clear();
 
     _subscription?.cancel();
-    if(userManagerStore.user != null){
-      _listenToLivros();
-    }
-
+    _listenToLivros();
   }
 
   String _search = '';
@@ -56,7 +53,7 @@ class LivrosController extends ChangeNotifier {
   void _listenToLivros(){
     print('entrou');
     _subscription = firestore.collection('livros')
-      .where('user', isEqualTo: userFilter.id).snapshots().listen(
+      .where('user', isEqualTo: userManagerStore.user.id).snapshots().listen(
             (event) {
 
             for(final change in event.docChanges){

@@ -17,6 +17,8 @@ class _LivrosListState extends State<LivrosList> {
         builder: (_, livrosController, __){
           final filteredLivros = livrosController.filteredLivros;
 
+          print(livrosController.filteredLivros);
+
           if(filteredLivros.isEmpty)
             return Expanded(
               child: Center(child: Text('nenhuma livro registrado!')),
